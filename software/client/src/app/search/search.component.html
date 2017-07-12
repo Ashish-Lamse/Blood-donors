@@ -1,0 +1,73 @@
+<div clas="row container">
+  <h3 class="page-header text-center">Search Donor</h3>
+  <form (submit)="search()" style="width: 70%" class="center">
+
+    <div class="form-group">
+      <label>Blood Group</label>
+      <ng-select id='bloodGroups' [allowClear]="true"
+                 [items]="bloodGroups"
+                 (selected)="selectedBloodGroups($event)"
+                 (typed)="typed($event)"
+                 placeholder="Please select blood group">
+      </ng-select>
+    </div>
+
+    <div class="form-group">
+      <label>City</label>
+      <ng-select id='cities' [allowClear]="true"
+                 [items]="cities"
+                 (selected)="selectedCities($event)"
+                 (typed)="typed($event)"
+                 placeholder="Please select blood group">
+      </ng-select>
+    </div>
+    <input type="submit" value="Search" class="btn btn-success">
+    <input type="reset" value="Reset" class="btn btn-default">
+  </form>
+</div>
+<hr>
+<table class="table table-striped" [mfData]="filteredArr" #mf="mfDataTable" [mfRowsOnPage]="5">
+  <thead>
+  <tr>
+    <th>
+      <mfDefaultSorter by="first_name">First Name</mfDefaultSorter>
+    </th>
+    <th>
+      <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
+    </th>
+    <th>
+      <mfDefaultSorter by="Occupation">Occupation</mfDefaultSorter>
+    </th>
+    <th>
+      <mfDefaultSorter by="martial_status">Martial Status</mfDefaultSorter>
+    </th>
+    <th>
+      <mfDefaultSorter by="date_of_birth">Date of birth</mfDefaultSorter>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of mf.data">
+    <td>{{item.personal_details.first_name}}</td>
+    <td>{{item.personal_details.last_name}}</td>
+    <td>{{item.personal_details.occupation}}</td>
+    <td>{{item.personal_details.martial_status}}</td>
+    <td>{{item.personal_details.date_of_birth}}</td>
+    <td style="width: 20%">
+      <span (click)="deleteContact(item._id)" class="btn-danger">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </span>
+      &nbsp;
+      <span app-edit-contact class="btn-warning"></span>
+    </td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="4">
+      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+    </td>
+  </tr>
+  </tfoot>
+</table>
+
