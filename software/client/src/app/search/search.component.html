@@ -6,6 +6,7 @@
       <label>Blood Group</label>
       <ng-select id='bloodGroups' [allowClear]="true"
                  [items]="bloodGroups"
+                 (removed)="removedBloodGroup($event)"
                  (selected)="selectedBloodGroups($event)"
                  (typed)="typed($event)"
                  placeholder="Please select blood group">
@@ -16,58 +17,87 @@
       <label>City</label>
       <ng-select id='cities' [allowClear]="true"
                  [items]="cities"
+                 (removed)="removedCity($event)"
                  (selected)="selectedCities($event)"
                  (typed)="typed($event)"
                  placeholder="Please select blood group">
       </ng-select>
     </div>
     <input type="submit" value="Search" class="btn btn-success">
-    <input type="reset" value="Reset" class="btn btn-default">
   </form>
 </div>
 <hr>
-<table class="table table-striped" [mfData]="filteredArr" #mf="mfDataTable" [mfRowsOnPage]="5">
-  <thead>
-  <tr>
-    <th>
-      <mfDefaultSorter by="first_name">First Name</mfDefaultSorter>
-    </th>
-    <th>
-      <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
-    </th>
-    <th>
-      <mfDefaultSorter by="Occupation">Occupation</mfDefaultSorter>
-    </th>
-    <th>
-      <mfDefaultSorter by="martial_status">Martial Status</mfDefaultSorter>
-    </th>
-    <th>
-      <mfDefaultSorter by="date_of_birth">Date of birth</mfDefaultSorter>
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let item of mf.data">
-    <td>{{item.personal_details.first_name}}</td>
-    <td>{{item.personal_details.last_name}}</td>
-    <td>{{item.personal_details.occupation}}</td>
-    <td>{{item.personal_details.martial_status}}</td>
-    <td>{{item.personal_details.date_of_birth}}</td>
-    <td style="width: 20%">
+
+
+
+<!--Tab Example-->
+<ngui-tab  selected="table"
+  selected-index-class="selected"
+  selected-contents-class="fadeIn animated">
+  <div class="tabs">
+    <div index="table">Table View</div>
+    <div index="chart">Graph View</div>
+  </div>
+
+  <div class="tab-contents">
+    <div contents="table">
+      <table class="table table-striped" [mfData]="filteredArr" #mf="mfDataTable" [mfRowsOnPage]="5">
+        <thead>
+        <tr>
+          <th>
+            <mfDefaultSorter by="first_name">First Name</mfDefaultSorter>
+          </th>
+          <th>
+            <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
+          </th>
+          <th>
+            <mfDefaultSorter by="Occupation">Occupation</mfDefaultSorter>
+          </th>
+          <th>
+            <mfDefaultSorter by="martial_status">Martial Status</mfDefaultSorter>
+          </th>
+          <th>
+            <mfDefaultSorter by="date_of_birth">Date of birth</mfDefaultSorter>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of mf.data" (click)="displayContact(item)">
+          <td>{{item.personal_details.first_name}}</td>
+          <td>{{item.personal_details.last_name}}</td>
+          <td>{{item.personal_details.occupation}}</td>
+          <td>{{item.personal_details.martial_status}}</td>
+          <td>{{item.personal_details.date_of_birth}}</td>
+          <td style="width: 20%">
       <span (click)="deleteContact(item._id)" class="btn-danger">
         <i class="fa fa-trash" aria-hidden="true"></i>
       </span>
-      &nbsp;
-      <span app-edit-contact class="btn-warning"></span>
-    </td>
-  </tr>
-  </tbody>
-  <tfoot>
-  <tr>
-    <td colspan="4">
-      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-    </td>
-  </tr>
-  </tfoot>
-</table>
-
+            &nbsp;
+            <span app-edit-contact class="btn-warning"></span>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="4">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div contents="chart" >
+      <div style="display: block">
+        <canvas
+                baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"
+                width="400" height="400">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</ngui-tab>

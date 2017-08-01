@@ -6,8 +6,9 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class SearchService {
-
-  constructor(private http:Http) { }
+  newData=[];
+  constructor(private http:Http) {
+  }
   //get donors list
   getBloodDonors():Observable<any>{
     const url="../../assets/donor.json";
@@ -15,9 +16,13 @@ export class SearchService {
     return this.http.get(url).map(
       res=>{
         const data=res.json();
-        console.log('git service__',data);
-        return data;
+        return data.concat(this.newData);
       }
     )
+  }
+
+  //adding new donor to the list of donor array
+  addNewDonor(newDonor){
+    this.newData.push(newDonor);
   }
 }

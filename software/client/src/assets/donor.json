@@ -10,7 +10,7 @@
       "city":"Hyderabad"
     },
     "contact_details":{
-    "personal-contact_details":{
+    "personal_contact_details":{
       "email":"ashish.lamse@gmail.com",
       "phone":"9856984458"
     },
@@ -30,8 +30,28 @@
       "blood_group":"O+",
       "city":"Nagpur"
     },"contact_details":{
-    "personal-contact_details":{
+    "personal_contact_details":{
       "email":"rohan.khanna@gmail.com",
+      "phone":"9856984458"
+    },
+    "emergency_contact_details":{
+      "email":"rohan.khanna@gmail.com",
+      "phone":"2589663325"
+    }
+  }
+  },
+  {
+    "personal_details":{
+      "first_name":"Rajesh",
+      "last_name":"Khanna",
+      "occupation":"Job",
+      "martial_status":"unmarried",
+      "date_of_birth":"05-11-1991",
+      "blood_group":"A+",
+      "city":"Nagpur"
+    },"contact_details":{
+    "personal_contact_details":{
+      "email":"rajesh.khanna@gmail.com",
       "phone":"9856984458"
     },
     "emergency_contact_details":{
@@ -50,7 +70,7 @@
       "blood_group":"AB+",
       "city":"Amravathi"
     },"contact_details":{
-    "personal-contact_details":{
+    "personal_contact_details":{
       "email":"mahendra.bahubali@gmail.com",
       "phone":"9856984458"
     },
@@ -70,7 +90,7 @@
       "blood_group":"A-",
       "city":"Bhopal"
     },"contact_details":{
-    "personal-contact_details":{
+    "personal_contact_details":{
       "email":"surendra.pratape@gmail.com",
       "phone":"9856984458"
     },
@@ -90,7 +110,7 @@
       "blood_group":"B-",
       "city":"Indour"
     },"contact_details":{
-    "personal-contact_details":{
+    "personal_contact_details":{
       "email":"rajendra.kaur@gmail.com",
       "phone":"9856984433"
     },
@@ -111,7 +131,7 @@
       "city":"Hyderabad"
     },
     "contact_details":{
-    "personal-contact_details":{
+    "personal_contact_details":{
       "email":"mahesh.deshmukh@gmail.com",
       "phone":"9856984458"
     },
